@@ -7,6 +7,9 @@ class NewTransaction extends StatelessWidget {
       TextEditingController(); //second method to register input
   final amountController = TextEditingController();
 
+  final Function addTx;
+  NewTransaction(this.addTx);
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -37,7 +40,10 @@ class NewTransaction extends StatelessWidget {
               margin: EdgeInsets.only(top: 10),
               child: ElevatedButton(
                 onPressed: () {
-                  print(amountController.text);
+                  addTx(
+                      titleController.text,
+                      double.parse(
+                          amountController.text)); //converts string to double
                 },
                 child: Text(
                   'Add Transaction',
