@@ -1,9 +1,9 @@
+import 'package:expenses_app/widgets/transaction_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:intl/intl.dart';
 
-import './transaction.dart';
+import './widgets/transaction_list.dart';
 
 void main() => runApp(const MyApp());
 
@@ -23,26 +23,17 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  final List<Transaction> transactions = [
-    Transaction(
-      id: 't1',
-      title: 'New transaction',
-      amount: 00.00,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'New transaction',
-      amount: 00.00,
-      date: DateTime.now(),
-    ),
-  ];
+  // String titleInput = 'Default'; //first method to register input
+  // String amountInput = '0';
+  final titleController =
+      TextEditingController(); //second method to register input
+  final amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter App'),
+        title: Text('Money Tracker'),
       ),
       body: Column(
         //mainAxisAlignment: MainAxisAlignment.spaceAround, //default(start)
@@ -56,65 +47,52 @@ class MyHomePage extends StatelessWidget {
               elevation: 5,
             ),
           ),
-          Column(
-            children: transactions.map(
-              (tx) {
-                return Container(
-                  width: double.infinity,
-                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                  child: Card(
-                    color: Colors.white,
-                    child: Row(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.symmetric(
-                            vertical: 10,
-                            horizontal: 15,
-                          ),
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.purple,
-                              width: 2,
-                              style: BorderStyle.solid,
-                            ),
-                          ),
-                          child: Text(
-                            '₹ ${tx.amount}', //'₹ ' + tx.amount.toString(), $ sign used as %d //called string interpolation
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Colors.purple,
-                            ),
-                          ),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              tx.title,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17,
-                                color: Colors.black,
-                              ),
-                            ),
-                            Text(
-                              DateFormat.MMMMEEEEd().format(tx.date),
-                              style: TextStyle(
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+          Card(
+            elevation: 5,
+            shadowColor: Colors.purple,
+            child: Container(
+              margin: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Title',
                     ),
-                    elevation: 4,
+                    controller: titleController,
+                    // onChanged: (val) {
+                    //   titleInput = val;
+                    // },
                   ),
-                );
-              },
-            ).toList(),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Price',
+                    ),
+                    controller: amountController,
+                    // onChanged: (val) => amountInput = val,
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        print(amountController.text);
+                      },
+                      child: Text(
+                        'Add Transaction',
+                        style: TextStyle(color: Colors.purple),
+                      ),
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.white),
+                        shadowColor: MaterialStateProperty.all(Colors.purple),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
           ),
+          TransactionList(),
         ],
       ),
     );
