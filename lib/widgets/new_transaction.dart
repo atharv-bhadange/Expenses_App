@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class NewTransaction extends StatelessWidget {
@@ -9,6 +10,20 @@ class NewTransaction extends StatelessWidget {
 
   final Function addTx;
   NewTransaction(this.addTx);
+
+  void submitData() {
+    final enteredTitle = titleController.text;
+    final enteredAmount =
+        int.parse(amountController.text); //converts string to int
+
+    if (enteredTitle.isEmpty || enteredAmount <= 0) {
+      return;
+    }
+    addTx(
+      enteredTitle,
+      enteredAmount,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +43,7 @@ class NewTransaction extends StatelessWidget {
               // onChanged: (val) {
               //   titleInput = val;
               // },
+              onSubmitted: (_) => submitData(),
             ),
             TextField(
               decoration: InputDecoration(
@@ -35,16 +51,13 @@ class NewTransaction extends StatelessWidget {
               ),
               controller: amountController,
               // onChanged: (val) => amountInput = val,
+              keyboardType: TextInputType.number,
+              onSubmitted: (_) => submitData(),
             ),
             Container(
               margin: EdgeInsets.only(top: 10),
               child: ElevatedButton(
-                onPressed: () {
-                  addTx(
-                      titleController.text,
-                      double.parse(
-                          amountController.text)); //converts string to double
-                },
+                onPressed: submitData,
                 child: Text(
                   'Add Transaction',
                   style: TextStyle(color: Colors.purple),

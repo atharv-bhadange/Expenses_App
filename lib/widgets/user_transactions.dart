@@ -14,18 +14,18 @@ class _UserTransactionsState extends State<UserTransactions> {
     Transaction(
       id: 't1',
       title: 'New transaction',
-      amount: 00.00,
+      amount: 00,
       date: DateTime.now(),
     ),
     Transaction(
       id: 't2',
       title: 'New transaction',
-      amount: 00.00,
+      amount: 00,
       date: DateTime.now(),
     ),
   ];
 
-  void _addNewTransaction(String txTitle, double txAmount) {
+  void _addNewTransaction(String txTitle, int txAmount) {
     final newTx = Transaction(
       id: DateTime.now().toString(),
       title: txTitle,

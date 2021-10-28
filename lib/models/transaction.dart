@@ -4,7 +4,7 @@ class Transaction //doesn't extend stateless widget
 {
   final String id;
   final String title;
-  final double amount;
+  final int amount;
   final DateTime date;
 
   Transaction({
