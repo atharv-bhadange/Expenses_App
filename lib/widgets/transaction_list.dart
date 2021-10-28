@@ -10,9 +10,12 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: transactions.map(
-        (tx) {
+    return Container(
+      height: 500,
+      child: ListView.builder(
+        //column with default scroll view
+        //parent should have fixed size
+        itemBuilder: (ctx, index) {
           return Container(
             width: double.infinity,
             margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
@@ -34,7 +37,7 @@ class TransactionList extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      '₹ ${tx.amount}', //'₹ ' + tx.amount.toString(), $ sign used as %d //called string interpolation
+                      '₹${transactions[index].amount}', //'₹ ' + tx.amount.toString(), $ sign used as %d //called string interpolation
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -46,7 +49,7 @@ class TransactionList extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        tx.title,
+                        transactions[index].title,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 17,
@@ -54,7 +57,7 @@ class TransactionList extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        DateFormat.MMMMEEEEd().format(tx.date),
+                        DateFormat.MMMMEEEEd().format(transactions[index].date),
                         style: TextStyle(
                           color: Colors.grey,
                         ),
@@ -67,7 +70,8 @@ class TransactionList extends StatelessWidget {
             ),
           );
         },
-      ).toList(),
+        itemCount: transactions.length,
+      ),
     );
   }
 }
