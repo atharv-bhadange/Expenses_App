@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import './widgets/new_transaction.dart';
@@ -61,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
         return GestureDetector(
           onTap: () {},
           child: NewTransaction(_addNewTransaction),
-          //behavior: HitTestBehavior.opaque,
+          behavior: HitTestBehavior.opaque,
         );
       },
     );

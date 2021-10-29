@@ -1,15 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class NewTransaction extends StatelessWidget {
+class NewTransaction extends StatefulWidget {
 // String titleInput = 'Default'; //first method to register input
   // String amountInput = '0';
-  final titleController =
-      TextEditingController(); //second method to register input
-  final amountController = TextEditingController();
-
   final Function addTx;
   NewTransaction(this.addTx);
+
+  @override
+  State<NewTransaction> createState() => _NewTransactionState();
+}
+
+class _NewTransactionState extends State<NewTransaction> {
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
 
   void submitData() {
     final enteredTitle = titleController.text;
@@ -19,10 +23,13 @@ class NewTransaction extends StatelessWidget {
     if (enteredTitle.isEmpty || enteredAmount <= 0) {
       return;
     }
-    addTx(
+    widget.addTx(
+      //wiget. helps to access the members of widget class in state class
       enteredTitle,
       enteredAmount,
     );
+
+    Navigator.of(context).pop(); //closes bottom modal sheet after submit
   }
 
   @override
