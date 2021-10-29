@@ -18,7 +18,7 @@ class TransactionList extends StatelessWidget {
         itemBuilder: (ctx, index) {
           return Container(
             width: double.infinity,
-            margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+            margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
             child: Card(
               //each transaction card
               child: Row(
@@ -38,11 +38,7 @@ class TransactionList extends StatelessWidget {
                     ),
                     child: Text(
                       '₹${transactions[index].amount}', //'₹ ' + tx.amount.toString(), $ sign used as %d //called string interpolation
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Theme.of(context).primaryColor,
-                      ),
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
                   ),
                   Column(
@@ -50,17 +46,11 @@ class TransactionList extends StatelessWidget {
                     children: [
                       Text(
                         transactions[index].title,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 17,
-                          color: Colors.black,
-                        ),
+                        style: Theme.of(context).textTheme.headline6,
                       ),
                       Text(
                         DateFormat.MMMMEEEEd().format(transactions[index].date),
-                        style: TextStyle(
-                          color: Colors.grey,
-                        ),
+                        style: Theme.of(context).textTheme.subtitle2,
                       ),
                     ],
                   ),

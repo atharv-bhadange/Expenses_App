@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import './widgets/new_transaction.dart';
@@ -13,6 +14,25 @@ class MyApp extends StatelessWidget {
       title: 'Personal Expenses App',
       theme: ThemeData(
         primarySwatch: Colors.purple, //uses different shades of color
+        fontFamily: 'Quicksand',
+        textTheme: TextTheme(
+            bodyText1: TextStyle(
+              fontFamily: 'OpenSans',
+              fontSize: 22,
+              //fontWeight: FontWeight.bold,
+            ),
+            headline6: TextStyle(
+              fontFamily: 'OpenSans',
+              fontWeight: FontWeight.bold,
+            )),
+        appBarTheme: AppBarTheme(
+          titleTextStyle: TextStyle(
+            //default style for all app bars
+            fontFamily: 'OpenSans',
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       home: MyHomePage(),
     );
@@ -70,7 +90,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Money Tracker'),
+        title: Text(
+          'Money Tracker',
+          //style: TextStyle(fontFamily: 'OpenSans'),
+        ),
         actions: [
           IconButton(
             onPressed: () => {_startAddNewTransaction(context)},
