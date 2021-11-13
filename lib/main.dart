@@ -16,10 +16,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.purple, //uses different shades of color
         fontFamily: 'Quicksand',
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
           bodyText1: TextStyle(
             fontFamily: 'OpenSans',
-            fontSize: 22,
+            fontSize: 15,
+            color: Colors.grey,
             //fontWeight: FontWeight.bold,
           ),
           headline6: TextStyle(
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           titleTextStyle: TextStyle(
             //default style for all app bars
             fontFamily: 'OpenSans',
