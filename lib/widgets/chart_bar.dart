@@ -12,8 +12,12 @@ class ChartBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        FittedBox(
-          child: Text('₹${amt}'),
+        Container(
+          height: 20,
+          child: FittedBox(
+            child: Text(
+                '₹${amt}'), //$ sign used as %d //called string interpolation
+          ),
         ),
         SizedBox(
           height: 4,

@@ -29,7 +29,7 @@ class Chart extends StatelessWidget {
         //returns M for monday, T for Tuesday and so on
         'amount': totalSum,
       };
-    });
+    }); //.reversed.toList();
   }
 
   int get totalSpending {
@@ -42,7 +42,7 @@ class Chart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 6,
-      shadowColor: Theme.of(context).primaryColorLight,
+      shadowColor: Theme.of(context).primaryColorDark,
       margin: EdgeInsets.all(12),
       child: Padding(
         padding: EdgeInsets.all(10),
