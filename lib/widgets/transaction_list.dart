@@ -37,48 +37,31 @@ class TransactionList extends StatelessWidget {
               //column with default scroll view
               //parent should have fixed size
               itemBuilder: (ctx, index) {
-                return Container(
-                  width: double.infinity,
-                  margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-                  child: Card(
-                    //each transaction card
-                    child: Row(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.symmetric(
-                            vertical: 10,
-                            horizontal: 15,
-                          ),
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Theme.of(context).primaryColor,
-                              width: 2,
-                              style: BorderStyle.solid,
-                            ),
-                          ),
-                          child: Text(
-                            '₹${transactions[index].amount}', //'₹ ' + tx.amount.toString(), $ sign used as %d //called string interpolation
-                            style: Theme.of(context).textTheme.bodyText1,
-                          ),
+                return Card(
+                  elevation: 5,
+                  shadowColor: Theme.of(context).primaryColorLight,
+                  margin: EdgeInsets.symmetric(
+                    vertical: 6,
+                    horizontal: 5,
+                  ),
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      radius: 35,
+                      child: Padding(
+                        padding: EdgeInsets.all(5),
+                        child: FittedBox(
+                          child: Text('₹${transactions[index].amount}'),
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              transactions[index].title,
-                              style: Theme.of(context).textTheme.headline6,
-                            ),
-                            Text(
-                              DateFormat.MMMMEEEEd()
-                                  .format(transactions[index].date),
-                              style: Theme.of(context).textTheme.subtitle2,
-                            ),
-                          ],
-                        ),
-                      ],
+                      ),
                     ),
-                    elevation: 4,
+                    title: Text(
+                      transactions[index].title,
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    subtitle: Text(
+                      DateFormat.MMMEd().format(transactions[index].date),
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
                   ),
                 );
               },
