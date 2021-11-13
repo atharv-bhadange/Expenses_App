@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Personal Expenses App',
       theme: ThemeData(
         primarySwatch: Colors.purple, //uses different shades of color
+        errorColor: Colors.red,
         fontFamily: 'Quicksand',
         textTheme: const TextTheme(
           bodyText1: TextStyle(
@@ -99,6 +100,14 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  void _deleteTransaction(String id) {
+    setState(() {
+      _userTransactions.removeWhere((element) {
+        return element.id == id;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,7 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
           //crossAxisAlignment: CrossAxisAlignment.centre, //default
           children: <Widget>[
             Chart(_recentTransactions),
-            TransactionList(_userTransactions),
+            TransactionList(_userTransactions, _deleteTransaction),
           ],
         ),
       ),
