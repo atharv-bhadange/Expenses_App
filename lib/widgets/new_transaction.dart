@@ -6,7 +6,8 @@ class NewTransaction extends StatefulWidget {
 // String titleInput = 'Default'; //first method to register input
   // String amountInput = '0';
   final Function addTx;
-  NewTransaction(this.addTx);
+  // ignore: use_key_in_widget_constructors
+  const NewTransaction(this.addTx);
 
   @override
   State<NewTransaction> createState() => _NewTransactionState();
@@ -61,12 +62,12 @@ class _NewTransactionState extends State<NewTransaction> {
       elevation: 5,
       shadowColor: Colors.purple,
       child: Container(
-        margin: EdgeInsets.all(10),
+        margin: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             TextField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Title',
               ),
               controller: _titleController,
@@ -76,7 +77,7 @@ class _NewTransactionState extends State<NewTransaction> {
               onSubmitted: (_) => _submitData(),
             ),
             TextField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Price',
               ),
               controller: _amountController,
@@ -84,7 +85,7 @@ class _NewTransactionState extends State<NewTransaction> {
               keyboardType: TextInputType.number,
               onSubmitted: (_) => _submitData(),
             ),
-            Container(
+            SizedBox(
               height: 70,
               child: Row(
                 children: [
@@ -94,7 +95,7 @@ class _NewTransactionState extends State<NewTransaction> {
                   ),
                   ElevatedButton(
                     onPressed: _presentDatePicker,
-                    child: Text(
+                    child: const Text(
                       'Choose Date',
                       style: TextStyle(
                           color: Colors.purple, fontWeight: FontWeight.bold),
@@ -108,10 +109,10 @@ class _NewTransactionState extends State<NewTransaction> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 10),
+              margin: const EdgeInsets.only(top: 10),
               child: ElevatedButton(
                 onPressed: _submitData,
-                child: Text(
+                child: const Text(
                   'Add Transaction',
                   style: TextStyle(color: Colors.white),
                 ),
