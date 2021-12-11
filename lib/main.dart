@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter/services.dart'; //for not allowing landscape
@@ -163,7 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text('Show Chart'),
-                  Switch(
+                  Switch.adaptive(
                     value: _showChart,
                     onChanged: (val) {
                       setState(() {
@@ -196,14 +198,16 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(
-          Icons.add,
-          size: 35,
-        ),
-        onPressed: () => {_startAddNewTransaction(context)},
-        //backgroundColor: ,
-      ),
+      floatingActionButton: Platform.isIOS
+          ? Container()
+          : FloatingActionButton(
+              child: const Icon(
+                Icons.add,
+                size: 35,
+              ),
+              onPressed: () => {_startAddNewTransaction(context)},
+              //backgroundColor: ,
+            ),
     );
   }
 }
