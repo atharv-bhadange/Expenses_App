@@ -12,25 +12,29 @@ class TransactionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return transactions.isEmpty
-        ? Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'No transactions to display',
-                style: Theme.of(context).textTheme.headline6,
-              ),
-              const SizedBox(
-                //to give spacing between the two
-                height: 10,
-              ),
-              SizedBox(
-                height: 400,
-                child: Image.asset(
-                  'assets/images/waiting.png',
-                  //fit: BoxFit.cover, //default
-                ),
-              )
-            ],
+        ? LayoutBuilder(
+            builder: (context, constraints) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    'No transactions to display',
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  const SizedBox(
+                    //to give spacing between the two
+                    height: 10,
+                  ),
+                  SizedBox(
+                    height: constraints.maxHeight * 0.8,
+                    child: Image.asset(
+                      'assets/images/waiting.png',
+                      //fit: BoxFit.cover, //default
+                    ),
+                  )
+                ],
+              );
+            },
           )
         : ListView.builder(
             //column with default scroll view
