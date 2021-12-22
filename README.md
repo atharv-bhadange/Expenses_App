@@ -1,3 +1,3 @@
-# expenses_app
+# Expenses_App
 
 Personal expenses app created while learning
